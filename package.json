@@ -1,0 +1,17 @@
+{
+  "name": "first-pkg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "v": "sass --version",
+    "s": "sass src/index.scss out/index.css",
+    "watch": "sass --watch src/index.scss out/index.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.55.0"
+  }
+}

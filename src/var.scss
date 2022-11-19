@@ -1,0 +1,23 @@
+$global-color: red;
+
+
+//不传参
+@mixin font-layout {
+    color: blue;
+    font-size: 12px;
+    font-weight: bolder;
+}
+
+//传参
+@mixin font-layout-cus($color, $font-size, $font-wight) {
+    color: $color;
+    font-size: $font-size;
+    font-weight: $font-wight;
+}
+
+//继承
+%able-to-extends {
+    color: blue;
+    font-size: 60px;
+    font-weight: bolder;
+}
