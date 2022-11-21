@@ -24,6 +24,7 @@ div {
     }
 
     &:hover {
+        
         // 取到card，然后并列元素，.block
         &~.block {
             height: 400px;
