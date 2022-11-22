@@ -1,9 +1,9 @@
 // 加减乘除
-const strToInt = Number('thjdfijm')
+const strToInt = Number('thjdfijm')    //NAN （是一个数字类型，不是字符串）   转化不了数字
 const strToIntByParse = parseInt('1')
 console.log(strToIntByParse)
-console.log(1 + '1')
-console.log(1 - '1')
+console.log(1 + '1')      //11  后面的1转化成字符串
+console.log(1 - '1')         // 0   后面的1转化成数字
 
 
 //原生类型
@@ -19,8 +19,9 @@ console.log(b)
 //逻辑运算
 //1.&&与   只有两个位都为1的时候1
 //2.||非    只有两个位都为0的时候0，只要有一个1就是1
+// 异或：相同为1，不同为0
 const bb = undefined;
-const aaa = bb || 5;
+const aaa = bb || 5;   //断路求值 第一个为true就不看后面，false看后面
 console.log('a',aaa)
 
 
@@ -34,6 +35,7 @@ else{
     console.log('没进来')
 }
 
+// 一个 = 是赋值运算符
 // == 有类型转化
 // 在js中，只用===，包含了所有的类型，没有类型转化
 // !=,==,!==,===
