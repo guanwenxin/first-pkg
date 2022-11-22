@@ -17,16 +17,16 @@ console.log(user)
 
 
 //1.增
-const prop = 'height'
-// user.height = 1;
-// user['height'] = 1;
+// user.height = 1;        //法1
+// user['height'] = 1;     //法2
+const prop = 'height'      //法3  以变量的方式
 user[prop] = 1;
 
 console.log(user)
 
 //2.修改 
 user.name = 'gwx'
-user[prop] = 1;
+user[prop] = 4;
 
 //3.查询
 const userName = user.name
@@ -38,7 +38,7 @@ delete user.age
 
 
 
-//引用类型
+//引用类型    对象
 const config = {
     accessKey:{
         key:'qwertyuiop'
@@ -46,16 +46,20 @@ const config = {
     secretKey:'123456789',
 }
 
+//浅拷贝
 // const copyConfig = config;
 // copyConfig.accessKey = '1'
 
-const copyConfig = {
-    accessKey: config.accessKey,
-    secretKey: config.secretKey
-}
 
-copyConfig.accessKey.key = 1;
-console.log(config)
+//深拷贝   
+//直接创建一个引用对象
+// const copyConfig = {
+//     accessKey: config.accessKey,
+//     secretKey: config.secretKey
+// }
+
+// copyConfig.accessKey.key = 1;
+// console.log(config)
 
 // deepCopyObject(aimObject) {
 //     // 递归遍历对象的属性值
@@ -66,13 +70,13 @@ console.log(config)
 console.log(JSON.stringify(config))
 
 // json 方法深拷贝
-// const jsonString = JSON.stringify(config)
-const deepConfig = JSON.parse(JSON.stringify(config))
+// const jsonString = JSON.stringify(config)          //config 对象完全转换成json字符串
+const deepConfig = JSON.parse(JSON.stringify(config))    // parse从json字符串重新再转换成 js对象, 有一个重新创建的过程，达到深拷贝的效果
 deepConfig.accessKey.key = 1;
 console.log(deepConfig)
 console.log(config)
 
-// 判断是否是对象
+// 判断是否是对象typeof
 const easy = {
     name: 'pjw'
 }
@@ -92,7 +96,7 @@ const bigOjb = {
     d: 4
 }
 
-const { a: ttt, b, c, d } = bigOjb
+const { a: ttt, b, c, d } = bigOjb  // 解构，左值a：ttt是给a取了一个别名
 console.log(ttt, b, c, d)
 
 // 简写
