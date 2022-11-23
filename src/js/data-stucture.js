@@ -20,14 +20,14 @@ const arr3 = [{ name: 'ha' }, { name: 'haha' }, { name: 'hahaha' }]      //引�
 //栈
 //数据结构的思路(面向对象)
 const Stack = {
-    capacity:[],
-    size: function(){
+    capacity: [],
+    size: function () {
         return this.capacity.length;
     },
-    push:function(item) {
+    push: function (item) {
         this.capacity.push(item)
     },
-    pop:function(){
+    pop: function () {
         return this.capacity.pop()
     }
 }
@@ -39,7 +39,7 @@ console.log(Stack.capacity, Stack.pop(), Stack.size())
 // 队列
 const Queue = {
     capacity: [],
-    size: function() {
+    size: function () {
         return this.capacity.length;
     },
     // add:function (item){     key和value相同 可以简写
@@ -64,7 +64,7 @@ console.log(Queue.remove(), Queue.size(), Queue.capacity)
 
 const Queue1 = {
     capacity: [],
-    size: function() {
+    size: function () {
         return this.capacity.length;
     },
     add(item) {
@@ -81,3 +81,28 @@ Queue1.add(2)
 Queue1.add(3)
 
 console.log(Queue1.remove(), Queue1.size(), Queue1.capacity)
+
+
+
+
+
+
+
+
+// 哈希表
+// key-value pair
+const hashMap = new Map();
+//set的时候给 key 和 value
+hashMap.set('name', 'hahaha')
+hashMap.set('color', { a: 'red' })
+
+//哈希表的时间的复杂度为O（1）
+console.log(hashMap.get('name'))
+console.log(hashMap.get('color'))
+
+
+//Set集合   储存的是数组
+// 单一的value，set的中的元素不会重复
+const set = new Set([1, 1, 2, 3, 4]);
+// 做基础数据类型的去重
+console.log(set)
