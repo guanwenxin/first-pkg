@@ -1,8 +1,9 @@
 //栈 队列 哈希表
 const arr = [1, 2, 3, 4, 5]
-const arr1 = [[1, 2, 3], 3, 4, 5]
-const arr2 = ['1', '2', '3']
-const arr3 = [{ name: 'ha' }, { name: 'haha' }, { name: 'hahaha' }]
+const arr1 = [[1, 2, 3], 3, 4, 5]      //二维数组
+const arr2 = ['1', '2', '3']           //字符串
+const arr3 = [{ name: 'ha' }, { name: 'haha' }, { name: 'hahaha' }]      //引用类型的对象数组
+
 
 
 //push, 添加元素到栈的顶端(末尾);
@@ -10,13 +11,14 @@ const arr3 = [{ name: 'ha' }, { name: 'haha' }, { name: 'hahaha' }]
 //后进先出
 
 // const stack = []
-// stack.push(1)
-// stack.push(2)
-// const stackToEle = stack.pop()
+// stack.push(1)                       //加
+// stack.push(2)                       //加
+// const stackToEle = stack.pop()      //弹出
 // console.log(stack, stackToEle, stack.length)
 
 
 //栈
+//数据结构的思路(面向对象)
 const Stack = {
     capacity:[],
     size: function(){
@@ -40,10 +42,12 @@ const Queue = {
     size: function() {
         return this.capacity.length;
     },
+    // add:function (item){     key和value相同 可以简写
     add(item) {
-        // 从左边进入队列
+        // 从左边进入队列,右边弹出
         this.capacity.unshift(item)
     },
+    // remove:function(){       key和value相同 可以简写
     remove() {
         return this.capacity.pop();
     }
