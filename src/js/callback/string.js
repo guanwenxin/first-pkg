@@ -40,6 +40,7 @@ console.log(str3.split(':'))
 
 
 
+
 //面试题  url路径参数
 //把url路径参数解析成 wd: 'vue' 的参数
 //第一步 通过 ？ 分割，我们只需要 后面一部分
@@ -53,10 +54,10 @@ function urlParser(url) {
     const resultSet = {}
     url.split('?')[1]
         .split('&')
-        .forEach(str => {
+        .forEach(str => {                                       //forEach遍历 字符串变为 key:value
             const pair = str.split('=')
-            resultSet[pair[0]] = pair[1]
-        })
+            resultSet[pair[0]] = pair[1]                        // 一个 = 是 赋值
+        }) 
     return resultSet;
 }
 console.log(urlParser(url))
