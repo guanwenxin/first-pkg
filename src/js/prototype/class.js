@@ -27,6 +27,11 @@ class People {
     }
 
     //静态方法
+
+    // 如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，
+  // 而是直接通过类来调用，这就称为“静态方法”。
+
+  // 注意，如果静态方法包含this关键字，这个this指的是类，而不是实例
     static getCount() {
         return this.#count;
     }
@@ -48,19 +53,20 @@ console.log(People.getCount())
 
 
 //单例模式
+// 注意，如果静态方法包含this关键字，这个this指的是类，而不是实例
 class Single {
     #name = 'qwe';
-    getName(){
+    getName() {
         return this.#name;
     }
-    setName(name){
+    setName(name) {
         this.#name = name;
 
     }
     static #instance = null;
 
     static getSingleInstance() {
-        if(!this.#instance){
+        if (!this.#instance) {
             //如果不存在就new一个，如果存在就返回
             this.#instance = new Single();
         }
@@ -83,32 +89,32 @@ console.log(secondObj.getName())
 class God extends People {
     //god有自己的私有属性
     #skill = [];
-    constructor(name, age, height,skill){
+    constructor(name, age, height, skill) {
         //第一步  父级有constructor就得super
         super(name, age, height)
         this.#skill = [skill];
     }
 
-    useSkill(){
-        if (this.#skill.length === 0){
-        console.log('施不了法')
-        return;
+    useSkill() {
+        if (this.#skill.length === 0) {
+            console.log('施不了法')
+            return;
+        }
+        //技能是一次性的。pop出，，，施完法就没有了
+        const aSkill = this.#skill.pop();
+        aSkill();
     }
-    //技能是一次性的。pop出，，，施完法就没有了
-    const aSkill = this.#skill.pop();
-    aSkill();
-}
 
 
-    getSkill(fn){
+    getSkill(fn) {
         this.#skill.push(fn)
     }
 }
 
-const sonBoy = new God('qqq','123','000',()=>{console.log('fiy')});
+const sonBoy = new God('qqq', '123', '000', () => { console.log('fiy') });
 console.log(sonBoy.getName());
 sonBoy.useSkill()
-sonBoy.getSkill(()=>{console.log('吃饭')})
+sonBoy.getSkill(() => { console.log('吃饭') })
 sonBoy.useSkill()
 sonBoy.useSkill()
 
