@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!--http请求-->
+     <!-- 工具包，库（axios）就会被加载出来 axios请求 -->
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+     <script>
+        // axios异步的请求，本质上返回的是一个Promise
+        // createAxiosTask函数创建axios任务
+        function createAxiosTask(city) {
+            // result的变量是Promise
+            const result = axios({
+                headers: {
+                    Authorization: `APPCODE e36e4f85632f48d8bf3a4b12e260877e`
+                },
+                method: 'get',
+                url: `http://jisutqybmf.market.alicloudapi.com/weather/query`,
+                params: {
+                    city,
+                }
+            })
+            return result;
+        }
+        // 创建任务
+        const asyncTask = [createAxiosTask('镇江'), createAxiosTask('长春'), createAxiosTask('乌鲁木齐')]
+
+        // 1.并发式执行,同时来请求
+        // promise all 必须所有的都fulfill，凡是有一个reject，直接reject
+        Promise.all(asyncTask).then((asyncTaskResult) => console.log(asyncTaskResult))
+        // promise allSettled 不需要所有的都fulfill，成功了就正常成功，失败了就失败了 
+        // Promise.allSettled(asyncTask).then((asyncTaskResult) => console.log(asyncTaskResult))
+        // Promise.race谁先执行完，就返回谁
+        // Promise.race(asyncTask).then((res) => console.log(res))
+
+        // 2.then方法能确定 序列化 执行
+        // createAxiosTask('镇江')
+        //     .then((res) => {    
+        //         console.log(res)
+        //         return createAxiosTask('长春')
+        //     }).then((res) => {
+        //         console.log(res)
+        //         return createAxiosTask('乌鲁木齐')
+        //     }).then((res) => console.log(res))
+
+
+
+        // 面试题  Promise.all
+        //传进来是Promise， 把Promise执行完，最后resolve所有的结果
+                // 是一个resolve的值的数组
+
+                //思路：首先得返回一个Promise，将promise数组foreach，然后调用then（）方法可以拿到值，将值push到result，并保存
+                function myselfPromiseAll(proTask) {
+            const result = []
+
+            return new Promise((resolve, reject) => {
+                proTask.forEach(promise => {
+                    promise.then((res) => {
+                        result.push(res)
+                        // 因为foreach方法不会等待，在痛恨方法做判断，判断result数组长度是否和proTask数据长度一致
+                        if (result.length === proTask.length) {
+                            resolve(result)
+                        }
+                    })
+                });
+            })
+        }
+
+        myselfPromiseAll(asyncTask).then(res => console.log(res))
+         
+     </script>
+</body>
+</html>
