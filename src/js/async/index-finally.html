@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- 获取requestWeatherInfo -->
      <script>
         // 异步的逻辑变为同步
@@ -22,18 +23,20 @@
                     city,
                 }
             })
+            // result不是promise，是真正的值
             console.log(result)
-            return result
+            // return result
         }
+        requestWeatherInfo('镇江')
         // 异步函数如果需要返回的时候，要写在同步的作用域里面，返回的值是promise
         // 不可以直接await，，如果要await的时候就要再封装一层
-        async function main() {
-            const a = await requestWeatherInfo('镇江') // promise
-            console.log(a)
-            return 1;
-        }
+        // async function main() {
+        //     const a = await requestWeatherInfo('镇江') // promise
+        //     console.log(a)
+        //     return 1;
+        // }
 
-        // loading...
+        // loading...未完待续
         // const final = await main();
     </script>
 </body>
