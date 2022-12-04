@@ -52,7 +52,7 @@
 
         // 面试题  Promise.all
         //传进来是Promise， 把Promise执行完，最后resolve所有的结果
-                // 是一个resolve的值的数组
+                // 返回是一个promise，，是一个resolve的值的数组
 
                 //思路：首先得返回一个Promise，将promise数组foreach，然后调用then（）方法可以拿到值，将值push到result，并保存
                 function myselfPromiseAll(proTask) {
@@ -62,7 +62,7 @@
                 proTask.forEach(promise => {
                     promise.then((res) => {
                         result.push(res)
-                        // 因为foreach方法不会等待，在痛恨方法做判断，判断result数组长度是否和proTask数据长度一致
+                        // 因为foreach方法不会等待，在then方法做判断，判断result数组长度是否和proTask数据长度一致
                         if (result.length === proTask.length) {
                             resolve(result)
                         }
