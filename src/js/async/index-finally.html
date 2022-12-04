@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 获取requestWeatherInfo -->
+     <script>
+        // 异步的逻辑变为同步
+        async function requestWeatherInfo(city) {
+            // result不是promise，是真正的值
+            const result = await axios({
+                headers: {
+                    Authorization: `APPCODE e36e4f85632f48d8bf3a4b12e260877e`
+                },
+                method: 'get',
+                url: `http://jisutqybmf.market.alicloudapi.com/weather/query`,
+                params: {
+                    city,
+                }
+            })
+            console.log(result)
+            return result
+        }
+        // 异步函数如果需要返回的时候，要写在同步的作用域里面，返回的值是promise
+        // 不可以直接await，，如果要await的时候就要再封装一层
+        async function main() {
+            const a = await requestWeatherInfo('镇江') // promise
+            console.log(a)
+            return 1;
+        }
+
+        // loading...
+        // const final = await main();
+    </script>
+</body>
+</html>
